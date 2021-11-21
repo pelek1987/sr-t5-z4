@@ -1,4 +1,4 @@
-function UserSearch({handleSubmit, value, handleChange}) {
+function UserSearch({handleSubmit, value, handleChange, handleReset}) {
     return (
         <form onSubmit={handleSubmit}>
             <label htmlFor="name">User's full name: </label>
@@ -11,6 +11,7 @@ function UserSearch({handleSubmit, value, handleChange}) {
                 placeholder="full name"
             />
             <input type="submit" value="Search" />
+            <button onClick={handleReset}>Reset</button>
         </form>
     );
 }

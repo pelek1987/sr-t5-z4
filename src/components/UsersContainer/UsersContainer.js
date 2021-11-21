@@ -27,6 +27,11 @@ function UsersContainer() {
         setUsers(searchedUsers);
     }
 
+    const handleReset = () => {
+        api.get('users.json')
+            .then(data => setUsers(data));
+    }
+
     const toggleUserSearchForm = (e) => {
         e.preventDefault();
         if(e.keyCode === 13) {
@@ -48,7 +53,10 @@ function UsersContainer() {
                     type="submit"
                 />
             </div>
-            {isUserSearchToggledOn && <UserSearch handleChange={handleChange} handleSubmit={handleSubmit} />}
+            {isUserSearchToggledOn && <UserSearch
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+                handleReset={handleReset} />}
             <UsersList users={users} />
         </div>
     );
