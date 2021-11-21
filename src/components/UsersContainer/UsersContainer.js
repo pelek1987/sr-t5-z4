@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react"
-import styled from "styled-components";
 import api from "../../api";
 import UsersList from "../UsersList";
 import UserSearch from "../UserSearch/UserSearch";
@@ -24,11 +23,12 @@ function UsersContainer() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const searchedUsers = users.filter(user => user.name.includes(fullName));
+        const searchedUsers = users.filter(user => user.name.toLowerCase().includes(fullName.toLowerCase()));
         setUsers(searchedUsers);
     }
 
     const toggleUserSearchForm = (e) => {
+        e.preventDefault();
         if(e.keyCode === 13) {
             setIsUserSearchToggledOn(true);
         }
