@@ -1,8 +1,18 @@
+import {useEffect, useRef} from "react";
+
 function UserSearch({handleSubmit, value, handleChange, handleReset}) {
+
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+        inputRef.current.focus();
+    }, [])
+
     return (
         <form onSubmit={handleSubmit}>
             <label htmlFor="name">User's full name: </label>
             <input
+                ref={inputRef}
                 id="name"
                 type="text"
                 name="name"
@@ -11,7 +21,7 @@ function UserSearch({handleSubmit, value, handleChange, handleReset}) {
                 placeholder="full name"
             />
             <input type="submit" value="Search" />
-            <button onClick={handleReset}>Reset</button>
+            <input type="button" onClick={handleReset} value={"Reset"} />
         </form>
     );
 }

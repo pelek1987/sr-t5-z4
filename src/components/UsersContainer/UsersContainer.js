@@ -8,7 +8,7 @@ function UsersContainer() {
     const userSearchFormToggler = useRef();
 
     const [users, setUsers] = useState([]);
-    const [fullName, setFullName] = useState('');
+    const [fullName, setFullName] = useState("");
     const [isUserSearchToggledOn, setIsUserSearchToggledOn] = useState(false);
 
     useEffect(() => {
@@ -25,20 +25,20 @@ function UsersContainer() {
         e.preventDefault();
         const searchedUsers = users.filter(user => user.name.toLowerCase().includes(fullName.toLowerCase()));
         setUsers(searchedUsers);
+        e.target.reset();
     }
 
     const handleReset = () => {
-        api.get('users.json')
+        api.get("users.json")
             .then(data => setUsers(data));
+        setIsUserSearchToggledOn(false);
+
     }
 
     const toggleUserSearchForm = (e) => {
         e.preventDefault();
         if(e.keyCode === 13) {
             setIsUserSearchToggledOn(true);
-        }
-        if(e.keyCode === 27) {
-            setIsUserSearchToggledOn(false);
         }
     }
 
@@ -50,7 +50,7 @@ function UsersContainer() {
                     ref={userSearchFormToggler}
                     onKeyDown={toggleUserSearchForm}
                     value="ENTER"
-                    type="submit"
+                    type="button"
                 />
             </div>
             {isUserSearchToggledOn && <UserSearch
